@@ -8,5 +8,10 @@ import { Component, Input } from '@angular/core';
 export class DashboardComponent {
   @Input() isExpanded: boolean = false;
   sidebarExpanded = true;
+  activeSection: string = 'jobPosting'; // Initialize with default section
+
+  setActiveSection(section: string) {
+    this.activeSection = section;
+  }
   
 }

@@ -10,21 +10,21 @@
     <!-- End Dashboard Nav -->
 
     <li class="nav-item">
-      <a class="nav-link collapsed" href="index.html" [routerLink]="['/job-posting']">
+      <a class="nav-link collapsed" [routerLink]="['/job-posting']" (click)="setActiveItem('jobPosting')">
         <!-- <i class="bi bi-question-circle"></i> -->
         <span>Job Posting</span>
       </a>
     </li>
     <!-- end of Post a job  -->
     <li class="nav-item">
-      <a class="nav-link collapsed" href="job-listing.html">
+      <a class="nav-link collapsed" (click)="setActiveItem('jobListing')">
         <!-- <i class="bi bi-question-circle"></i> -->
         <span>Job Listings</span>
       </a>
     </li>
 
     <li class="nav-item">
-      <a class="nav-link collapsed" href="pages-error-404.html">
+      <a class="nav-link collapsed"  (click)="setActiveItem('applicationTracking')">
         <!-- <i class="bi bi-envelope"></i> -->
         <span>Applicant Tracking</span>
       </a>
@@ -32,7 +32,7 @@
     <!-- End Applicant Tracking -->
 
     <li class="nav-item">
-      <a class="nav-link collapsed" href="applicants.html">
+      <a class="nav-link collapsed"  (click)="setActiveItem('candidateProfile')">
         <!-- <i class="bi bi-card-list"></i> -->
         <span>Candidate Profiles</span>
       </a>
@@ -40,14 +40,14 @@
     <!-- End Candidate Profiles-->
 
     <li class="nav-item">
-      <a class="nav-link collapsed" href="users-profile.html">
+      <a class="nav-link collapsed"  (click)="setActiveItem('companyProfile')">
         <!-- <i class="bi bi-person"></i> -->
         <span>Company and Profile Management</span>
       </a>
     </li>
     <!-- End Profile Page Nav -->
     <li class="nav-item">
-      <a class="nav-link collapsed" href="pages-error-404.html">
+      <a class="nav-link collapsed" >
         <!-- <i class="bi bi-box-arrow-in-right"></i> -->
         <span>Logout</span>
       </a>

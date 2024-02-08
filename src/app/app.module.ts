@@ -7,6 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ResumeModule } from './resume/resume.module';
 import { SharedModule } from './shared/shared.module';
 import { RecruiterPortalModule } from './recruiter-portal/recruiter-portal.module';
+import { CandidatePortalModule } from './candidate-portal/candidate-portal.module';
 
 @NgModule({
   declarations: [
@@ -17,8 +18,9 @@ import { RecruiterPortalModule } from './recruiter-portal/recruiter-portal.modul
     AppRoutingModule,
     NgbModule,
     SharedModule,
+    ResumeModule,
     RecruiterPortalModule,
-    ResumeModule
+    CandidatePortalModule
   ],
   providers: [],
   bootstrap: [AppComponent]

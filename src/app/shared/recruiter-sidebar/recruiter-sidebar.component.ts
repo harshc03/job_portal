@@ -6,5 +6,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./recruiter-sidebar.component.css']
 })
 export class RecruiterSidebarComponent {
-  
+  @Output() activeItemChanged: EventEmitter<string> = new EventEmitter<string>();
+
+  setActiveItem(active: string) {
+    this.activeItemChanged.emit(active);
+    console.log(active)
+  }
 }

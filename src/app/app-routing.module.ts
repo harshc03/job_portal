@@ -7,6 +7,7 @@ import { SkillsComponent } from './resume/skills/skills.component';
 import { WorkExperienceComponent } from './resume/work-experience/work-experience.component';
 import { DashboardComponent } from './recruiter-portal/dashboard/dashboard.component';
 import { JobPostingComponent } from './recruiter-portal/job-posting/job-posting.component';
+import { HeroComponent } from './candidate-portal/hero/hero.component';
 
 const routes: Routes = [
   {
@@ -28,7 +29,8 @@ const routes: Routes = [
   {
     path: "co-curricular",
     component: CoCorricularComponent
-  },{
+  },
+  {
     path: "recruiter-portal",
     component: DashboardComponent
   },
@@ -36,6 +38,10 @@ const routes: Routes = [
     path:'job-posting',
     component: JobPostingComponent,
     outlet: 'recruiter'
+  },
+  {
+    path:'candidate-portal',
+    component: HeroComponent
   }
 ];
 
