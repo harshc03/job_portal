@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./hero.component.css']
 })
 export class HeroComponent {
-
+  images = ['../../../assets/img/carousel-1.jpg','../../../assets/img/carousel-1.jpg','../../../assets/img/carousel-1.jpg']
+  activeItem: String = 'home'
+  setActiveItem(active : String){
+    this.activeItem = active;
+  }
 }

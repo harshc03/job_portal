@@ -1,30 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeroComponent } from './hero/hero.component';
-import { CategoryComponent } from './category/category.component';
-import { ContactComponent } from './contact/contact.component';
-import { JobDetailComponent } from './job-detail/job-detail.component';
-import { JobListComponent } from './job-list/job-list.component';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
 @NgModule({
   declarations: [
-    HeroComponent,
-    CategoryComponent,
-    ContactComponent,
-    JobDetailComponent,
-    JobListComponent
+    HeroComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NgbCarouselModule
   ],
   exports: [
-    HeroComponent,
-    CategoryComponent,
-    CategoryComponent,
-    JobDetailComponent,
-    JobListComponent
+    HeroComponent
   ]
 })
 export class CandidatePortalModule { }
