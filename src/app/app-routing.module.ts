@@ -9,6 +9,8 @@ import { DashboardComponent } from './recruiter-portal/dashboard/dashboard.compo
 import { JobPostingComponent } from './recruiter-portal/job-posting/job-posting.component';
 import { HeroComponent } from './candidate-portal/hero/hero.component';
 import { SelectedTemplateComponent } from './resume/selected-template/selected-template.component';
+import { LoginComponent } from './candidate-authentication/login/login.component';
+import { RegisterComponent } from './candidate-authentication/register/register.component';
 
 const routes: Routes = [
   {
@@ -47,6 +49,14 @@ const routes: Routes = [
   {
     path: 'selected-template',
     component: SelectedTemplateComponent
+  },
+  {
+    path: '',
+    component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   }
 ];
 

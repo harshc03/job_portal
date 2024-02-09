@@ -8,6 +8,7 @@ import { ResumeModule } from './resume/resume.module';
 import { SharedModule } from './shared/shared.module';
 import { RecruiterPortalModule } from './recruiter-portal/recruiter-portal.module';
 import { CandidatePortalModule } from './candidate-portal/candidate-portal.module';
+import { CandidateAuthenticationModule } from './candidate-authentication/candidate-authentication.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CandidatePortalModule } from './candidate-portal/candidate-portal.modul
     SharedModule,
     ResumeModule,
     RecruiterPortalModule,
-    CandidatePortalModule
+    CandidatePortalModule,
+    CandidateAuthenticationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
