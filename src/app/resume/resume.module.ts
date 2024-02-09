@@ -7,6 +7,8 @@ import { WorkExperienceComponent } from './work-experience/work-experience.compo
 import { CoCorricularComponent } from './co-corricular/co-corricular.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { TemplateComponent } from './template/template.component';
+import { SelectedTemplateComponent } from './selected-template/selected-template.component';
 
 
 
@@ -16,7 +18,9 @@ import { RouterModule } from '@angular/router';
     ProfileComponent,
     EducationComponent,
     WorkExperienceComponent,
-    CoCorricularComponent
+    CoCorricularComponent,
+    TemplateComponent,
+    SelectedTemplateComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +33,9 @@ import { RouterModule } from '@angular/router';
     ProfileComponent,
     EducationComponent,
     WorkExperienceComponent,
-    CoCorricularComponent
+    CoCorricularComponent,
+    TemplateComponent,
+    SelectedTemplateComponent
   ]
 })
 export class ResumeModule { }

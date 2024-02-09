@@ -1,0 +1,58 @@
+<div>
+  <!-- FONTS -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css" />
+
+  <!-- PAGE STUFF -->
+  <div class="rela-block page" >
+    <div class="rela-block top-bar">
+      <div class="caps name">
+        <div class="abs-center">{{ resumeData.get('firstname')?.value }} {{ resumeData.get('lastname')?.value }}</div>
+      </div>
+    </div>
+    <div class="side-bar">
+      <div class="mugshot">
+        <div class="logo">
+          <img [src]="resumeData.get('photo')?.value" alt="resume photo">
+          <p class="logo-text d-flex justify-content-center">{{ resumeData.get('firstname')?.value[0] }}{{ resumeData.get('lastname')?.value[0] }}</p>
+        </div>
+      </div>
+      <p>{{ resumeData.get('location')?.value }}</p>
+      <p>{{ resumeData.get('country')?.value }}</p>
+      <p>{{ resumeData.get('phone')?.value }}</p>
+      <p>{{ resumeData.get('email')?.value }}</p>
+      <br />
+      <!-- Social Links (if available) -->
+      <ng-container *ngIf="resumeData.get('linkedin')?.value">
+        <p class="rela-block social linked-in">{{ resumeData.get('linkedin')?.value }}</p>
+      </ng-container>
+      <ng-container *ngIf="resumeData.get('github')?.value">
+        <p class="rela-block social github">{{ resumeData.get('github')?.value }}</p>
+      </ng-container>
+      <!-- End Social Links -->
+      <p class="rela-block caps side-header">Expertise</p>
+      <ng-container *ngFor="let skill of resumeData.get('skills')?.value">
+        <p class="rela-block list-thing">{{ skill.skillName }}</p>
+      </ng-container>
+      <p class="rela-block caps side-header">Education</p>
+      <ng-container *ngFor="let education of resumeData.get('education')?.value">
+        <p class="rela-block list-thing">{{ education.degree }} in {{ education.institution }}</p>
+        <p class="rela-block list-thing">{{ education.year }}</p>
+        <p class="rela-block list-thing">{{ education.board }}</p>
+      </ng-container>
+    </div>
+    <div class="rela-block content-container">
+      <h2 class="rela-block caps title">{{ resumeData.get('position')?.value }}</h2>
+      <div class="rela-block separator"></div>
+      <div class="rela-block caps greyed">Profile</div>
+      <p class="long-margin">{{ resumeData.get('aboutMe')?.value }}</p>
+      <div class="rela-block caps greyed">Experience</div>
+      <ng-container *ngFor="let experience of resumeData.get('workExperience')?.value">
+        <h3>{{ experience.position }}</h3>
+        <p class="light">{{ experience.company }}</p>
+        <p class="justified">{{ experience.description }}</p>
+      </ng-container>
+    </div>
+  </div>
+</div>

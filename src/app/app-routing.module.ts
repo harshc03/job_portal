@@ -8,6 +8,7 @@ import { WorkExperienceComponent } from './resume/work-experience/work-experienc
 import { DashboardComponent } from './recruiter-portal/dashboard/dashboard.component';
 import { JobPostingComponent } from './recruiter-portal/job-posting/job-posting.component';
 import { HeroComponent } from './candidate-portal/hero/hero.component';
+import { SelectedTemplateComponent } from './resume/selected-template/selected-template.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path:'candidate-portal',
     component: HeroComponent
+  },
+  {
+    path: 'selected-template',
+    component: SelectedTemplateComponent
   }
 ];
 
