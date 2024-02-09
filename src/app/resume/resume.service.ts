@@ -26,7 +26,8 @@ export class ResumeService {
         degree: new FormControl(),
         year: new FormControl(),
         percentage: new FormControl(),
-        board: new FormControl()
+        board: new FormControl(),
+        location: new FormControl(),
       }),
     ]),
     skills: new FormArray([
@@ -36,12 +37,11 @@ export class ResumeService {
     ]),
     workExperience: new FormArray([
       new FormGroup({
-        position: new FormControl(),
+        w_type: new FormControl(),
         company: new FormControl(),
-        startDate: new FormControl(),
-        endDate: new FormControl(),
+        position: new FormControl(),
         description: new FormControl(),
-        country: new FormControl(),
+        tenure: new FormControl()
       }),
     ]),
     coCorricular: new FormArray([

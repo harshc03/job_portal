@@ -17,4 +17,7 @@ export class AuthenticationService {
     formData.append("file",file);
     return this.http.post("http://localhost:8080/api/uploadFile",formData)
   }
+  validateUser(user : any) : Observable<any>{
+    return this.http.post("http://localhost:8080/api/login",user)
+  }
 }

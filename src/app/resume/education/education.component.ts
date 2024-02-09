@@ -34,4 +34,5 @@ export class EducationComponent {
   onSubmit() {
     this.resumeService.printEducationForm(this.educationForm.value);
   }
+  
 }

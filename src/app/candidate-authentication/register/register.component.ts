@@ -20,13 +20,13 @@ export class RegisterComponent implements OnInit {
   ) {
     // Initialize the form group
     this.userData = new FormGroup({
-      firstname: new FormControl(''),
-      lastname: new FormControl(''),
-      email: new FormControl(''),
-      contact: new FormControl(''),
-      gender: new FormControl(''),
-      password: new FormControl(''),
-      resumeUrl: new FormControl('')
+      firstname: new FormControl(),
+      lastname: new FormControl(),
+      email: new FormControl(),
+      contact: new FormControl(),
+      gender: new FormControl(),
+      password: new FormControl(),
+      resumeUrl: new FormControl()
     });
   }
 
@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
       });
     });
     console.log("barobar bhai");
-    this.router.navigate(['login']);
+    this.router.navigate(['']);
   }
 
   read(event: any) {

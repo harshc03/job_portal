@@ -2,18 +2,18 @@
     
 <div class="container">
     <div class="signin">
-        <form action="" class="sign-in-form">
+        <form action="" class="sign-in-form" [formGroup]="loginForm">
             <h2 class="title">Sign in</h2>
             <small>Fill Your Details</small>
             <div class="input-field">
                 <i class="fas fa-envelope"></i>
-                <input type="text" placeholder="Email Id">
+                <input type="text" placeholder="Email Id" formControlName="email">
             </div>
             <div class="input-field">
                 <i class="fas fa-lock"></i>
-                <input type="password" placeholder="Password">
+                <input type="password" placeholder="Password" formControlName="password">
             </div>
-            <input type="submit" value="Login" class="btn">
+            <button type="submit" value="Login" class="btn" (click)="submit()">Login</button>
             
         </form>
         

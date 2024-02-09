@@ -1,11 +1,14 @@
 <div>
+  <button (click)="openPDF()" class="btn btn-warning submit align-items-center col-md-12" [hidden]="downloadClicked">
+    Download PDF
+</button>
   <!-- FONTS -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css" />
 
   <!-- PAGE STUFF -->
-  <div class="rela-block page" >
+  <div class="rela-block page" id="htmlData">
     <div class="rela-block top-bar">
       <div class="caps name">
         <div class="abs-center">{{ resumeData.get('firstname')?.value }} {{ resumeData.get('lastname')?.value }}</div>

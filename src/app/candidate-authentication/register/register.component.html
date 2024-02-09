@@ -26,7 +26,7 @@
               </div>
               <div class="input-field">
                   <i class="fas fa-phone"></i>
-                  <input type="text" placeholder="Phone No" formControlName="contact">
+                  <input type="number" placeholder="Phone No" formControlName="contact">
               </div>
               <div class="input-field">
                   <i class="fas fa-venus-mars"></i>
@@ -40,8 +40,10 @@
               <div class="input-field">
                   <i class="fas fa-file"></i>
                   <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" (change)="read($event)">
-                  <button (click)="createResume()">Don't have a resume? Create Resume</button>
+                  
+                  <!-- <button (click)="createResume()">Don't have a resume? Create Resume</button> -->
               </div>
+              <p (click)="createResume()" style="cursor: pointer;" >Dont have a resume <span style="color: blue;">Click here</span></p>
               <div class="input-field">
                   <i class="fas fa-lock"></i>
                   <input type="password" placeholder="Set Password"  formControlName="password">

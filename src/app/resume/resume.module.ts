@@ -9,7 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TemplateComponent } from './template/template.component';
 import { SelectedTemplateComponent } from './selected-template/selected-template.component';
-
+import html2canvas from 'html2canvas';
+// import { jspdf } from 'jspdf';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { SelectedTemplateComponent } from './selected-template/selected-template
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    
   ],
   exports: [
     SkillsComponent,

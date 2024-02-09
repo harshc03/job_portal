@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { CandidateAuthenticationModule } from '../candidate-authentication.module';
+import { AuthenticationService } from '../authentication.service';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -6,5 +11,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-
+  constructor(private authenticationService: AuthenticationService, private cookieService : CookieService, private router : Router) {   }
+  loginForm = new FormGroup({
+    email: new FormControl(),
+    password: new FormControl()
+  });
+  submit(){
+    this.authenticationService.validateUser(this.loginForm.value).subscribe((data)=>{
+      console.log(data)
+      if(data.validYN ==1){
+        this.cookieService.set("name",data.name)
+        this.cookieService.set("email",data.email)
+        this.cookieService.set("contact",data.contact)
+        this.cookieService.set("image_url",data.image_url)
+      }
+      this.router.navigate(['/candidate-portal']);
+    })
+  }
 }
