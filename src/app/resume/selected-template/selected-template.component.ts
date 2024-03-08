@@ -3,6 +3,8 @@ import { FormGroup } from '@angular/forms';
 import { ResumeService } from '../resume.service';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import { TemplateComponent } from '../template/template.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-selected-template',
@@ -11,9 +13,11 @@ import jsPDF from 'jspdf';
 })
 export class SelectedTemplateComponent {
   data:any;
+
+  id!:number
   downloadClicked:boolean=false;
   resumeData!: FormGroup;
-  constructor(private resumeService: ResumeService) {
+  constructor(private resumeService: ResumeService,private router:Router) {
     this.resumeData = this.resumeService.resumeForm;
    }
    isResumeDataAvailable(): boolean {
@@ -31,5 +35,6 @@ export class SelectedTemplateComponent {
       PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
       PDF.save('angular-demo.pdf');
     });
+    this.router.navigate(['/register'])
   }
 }

@@ -52,11 +52,9 @@ export class RegisterComponent implements OnInit {
     this.authenticationService.uploadFile(this.resumeUrl).subscribe((data) => {
       this.authenticationService.registerUser(this.userData.value,resumeData.value).subscribe((data) => {
         console.log(data);
-        this.router.navigate(['/login']);
+        this.router.navigate(['']);
       });
     });
-    console.log("barobar bhai");
-    this.router.navigate(['']);
   }
 
   read(event: any) {

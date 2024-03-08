@@ -31,6 +31,6 @@ export class CoCorricularComponent {
 
   onSubmit() {
     this.resumeService.printCoCurricularActivityForm(this.coCurricularActivityForm.value);
-    this.router.navigate(['/register'])
+    this.router.navigate(['/selected-template'])
   }
 }

@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeroComponent } from './hero/hero.component';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { Router, RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -11,7 +13,9 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   imports: [
     CommonModule,
-    NgbCarouselModule
+    NgbCarouselModule,
+    RouterModule,
+    HttpClientModule
   ],
   exports: [
     HeroComponent

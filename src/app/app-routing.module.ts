@@ -11,6 +11,7 @@ import { HeroComponent } from './candidate-portal/hero/hero.component';
 import { SelectedTemplateComponent } from './resume/selected-template/selected-template.component';
 import { LoginComponent } from './candidate-authentication/login/login.component';
 import { RegisterComponent } from './candidate-authentication/register/register.component';
+import { TemplateComponent } from './resume/template/template.component';
 
 const routes: Routes = [
   {
@@ -57,6 +58,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path:'templates',
+    component:TemplateComponent 
   }
 ];
 
