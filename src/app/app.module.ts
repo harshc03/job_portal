@@ -9,6 +9,8 @@ import { SharedModule } from './shared/shared.module';
 import { RecruiterPortalModule } from './recruiter-portal/recruiter-portal.module';
 import { CandidatePortalModule } from './candidate-portal/candidate-portal.module';
 import { CandidateAuthenticationModule } from './candidate-authentication/candidate-authentication.module';
+import { AdminSiteModule } from './admin-site/admin-site.module';
+import { RecruiterAuthModule } from './recruiter-auth/recruiter-auth.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { CandidateAuthenticationModule } from './candidate-authentication/candid
     ResumeModule,
     RecruiterPortalModule,
     CandidatePortalModule,
-    CandidateAuthenticationModule
+    CandidateAuthenticationModule,
+    AdminSiteModule,
+    RecruiterAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

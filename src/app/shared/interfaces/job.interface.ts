@@ -12,5 +12,6 @@ export interface Job {
   logo_url: string,
   sector_id: number,
   sector: string,
-  application_deadline : string
+  application_deadline : string,
+  description: string
 }

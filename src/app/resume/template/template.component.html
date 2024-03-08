@@ -3,7 +3,6 @@
   <div class="d-flex justify-content-around align-items-center">
     <div *ngFor="let template of templates; let i = index" class="align-items-center">
       <figure class="image-block">
-        <h1>The Beach</h1>
         <img [src]="template" alt="" />
         <figcaption>
           <h3>More Info</h3>
@@ -14,9 +13,10 @@
             egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
             leo.
           </p>
-          <button (click)="selectedTemplate(i)">Choose Template</button>
+          <button (click)="selectedTemplate(i+1)">Choose Template</button>
         </figcaption>
       </figure>
     </div>
   </div>
 </div>
+

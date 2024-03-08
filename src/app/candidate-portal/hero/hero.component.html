@@ -177,29 +177,103 @@
                   type="text"
                   class="form-control border-0"
                   placeholder="Keyword"
+                  [(ngModel)]="searchText"
                 />
               </div>
               <div class="col-md-4">
-                <select class="form-select border-0">
+                <select
+                  class="form-select border-0"
+                  [(ngModel)]="selectedCategory"
+                >
                   <option selected>Category</option>
-                  <option *ngFor="let cat of category">{{cat.name}}</option>
+                  <option *ngFor="let cat of category">{{ cat.name }}</option>
                 </select>
               </div>
               <div class="col-md-4">
-                <select class="form-select border-0">
+                <select
+                  class="form-select border-0"
+                  [(ngModel)]="selectedLocation"
+                >
                   <option selected>Location</option>
-                  <option *ngFor="let loc of location">{{loc.loc_name}}</option>
+                  <option *ngFor="let loc of location">
+                    {{ loc.job_loc }}
+                  </option>
                 </select>
               </div>
             </div>
           </div>
           <div class="col-md-2">
-            <button class="btn btn-dark border-0 w-100">Search</button>
+            <button class="btn btn-dark border-0 w-100" (click)="onSearch()">
+              Search
+            </button>
           </div>
         </div>
       </div>
     </div>
     <!-- Search End -->
+
+    <!-- search result -->
+    <div class="container-xxl py-5" *ngIf="filteredJobs">
+      <div class="container">
+        <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
+          Job Search
+        </h1>
+        <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.3s">
+          <div class="tab-content">
+            <div id="tab-1" class="tab-pane fade show p-0 active">
+              <div
+                class="job-item p-4 mb-4"
+                *ngFor="let job of filteredJobs.slice(0, 5)"
+              >
+                <div class="row g-4">
+                  <div class="col-sm-12 col-md-8 d-flex align-items-center">
+                    <img
+                      class="flex-shrink-0 img-fluid border rounded"
+                      src="{{ job.logo_url }}"
+                      alt=""
+                      style="width: 80px; height: 80px"
+                    />
+                    <div class="text-start ps-4">
+                      <h5 class="mb-3">{{ job.job_title }}</h5>
+                      <span class="text-truncate me-3"
+                        ><i class="fa fa-map-marker-alt text-primary me-2"></i
+                        >{{ job.job_loc }}</span
+                      >
+                      <span class="text-truncate me-3"
+                        ><i class="far fa-clock text-primary me-2"></i
+                        >{{ job.job_type }}</span
+                      >
+                      <span class="text-truncate me-0"
+                        ><i class="far fa-money-bill-alt text-primary me-2"></i
+                        >{{ job.salary }}</span
+                      >
+                    </div>
+                  </div>
+                  <div
+                    class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center"
+                  >
+                    <div class="d-flex mb-3">
+                      <a class="btn btn-light btn-square me-3" href=""
+                        ><i class="far fa-heart text-primary"></i
+                      ></a>
+                      <a class="btn btn-primary" (click)="selectJob(job)"
+                        >Apply Now</a
+                      >
+                    </div>
+                    <small class="text-truncate"
+                      ><i class="far fa-calendar-alt text-primary me-2"></i>Date
+                      Line: {{ job.application_deadline | date }}</small
+                    >
+                  </div>
+                </div>
+              </div>
+              <a class="btn btn-primary py-3 px-5" href="">Browse More Jobs</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- search result end -->
 
     <!-- Category Start -->
     <div class="container-xxl py-5">
@@ -369,27 +443,31 @@
           </ul>
           <div class="tab-content">
             <div id="tab-1" class="tab-pane fade show p-0 active">
-              <div class="job-item p-4 mb-4" *ngFor="let job of JobData">
+              <div
+                class="job-item p-4 mb-4"
+                *ngFor="let job of JobData.slice(0, 5)"
+              >
                 <div class="row g-4">
                   <div class="col-sm-12 col-md-8 d-flex align-items-center">
                     <img
                       class="flex-shrink-0 img-fluid border rounded"
-                      src="{{job.logo_url}}"
+                      src="{{ job.logo_url }}"
                       alt=""
                       style="width: 80px; height: 80px"
                     />
                     <div class="text-start ps-4">
-                      <h5 class="mb-3">{{job.job_title}}</h5>
+                      <h5 class="mb-3">{{ job.job_title }}</h5>
                       <span class="text-truncate me-3"
                         ><i class="fa fa-map-marker-alt text-primary me-2"></i
-                        >{{job.job_loc}}</span
+                        >{{ job.job_loc }}</span
                       >
                       <span class="text-truncate me-3"
-                        ><i class="far fa-clock text-primary me-2"></i>{{job.job_type}}</span
+                        ><i class="far fa-clock text-primary me-2"></i
+                        >{{ job.job_type }}</span
                       >
                       <span class="text-truncate me-0"
                         ><i class="far fa-money-bill-alt text-primary me-2"></i
-                        >{{job.salary}}</span
+                        >{{ job.salary }}</span
                       >
                     </div>
                   </div>
@@ -400,11 +478,13 @@
                       <a class="btn btn-light btn-square me-3" href=""
                         ><i class="far fa-heart text-primary"></i
                       ></a>
-                      <a class="btn btn-primary" (click)="applyJob(job.job_id)">Apply Now</a>
+                      <a class="btn btn-primary" (click)="selectJob(job)"
+                        >Apply Now</a
+                      >
                     </div>
                     <small class="text-truncate"
                       ><i class="far fa-calendar-alt text-primary me-2"></i>Date
-                      Line: {{job.application_deadline | date}}</small
+                      Line: {{ job.application_deadline | date }}</small
                     >
                   </div>
                 </div>
@@ -1080,7 +1160,10 @@
   </div>
   <div *ngIf="activeItem === 'jobDetail'">
     <!-- Header End -->
-    <div class="container-xxl py-5 bg-dark page-header mb-5">
+    <div
+      class="container-xxl py-5 bg-dark page-header mb-5"
+      *ngIf="selectedJob"
+    >
       <div class="container my-5 pt-5 pb-4">
         <h1 class="display-3 text-white mb-3 animated slideInDown">
           Job Detail
@@ -1106,22 +1189,23 @@
             <div class="d-flex align-items-center mb-5">
               <img
                 class="flex-shrink-0 img-fluid border rounded"
-                src="../../../assets/img/com-logo-2.jpg"
+                src="{{ selectedJob.logo_url }}"
                 alt=""
                 style="width: 80px; height: 80px"
               />
               <div class="text-start ps-4">
-                <h3 class="mb-3">Marketing Manager</h3>
+                <h3 class="mb-3">{{ selectedJob.job_title }}</h3>
                 <span class="text-truncate me-3"
-                  ><i class="fa fa-map-marker-alt text-primary me-2"></i>New
-                  York, USA</span
+                  ><i class="fa fa-map-marker-alt text-primary me-2"></i
+                  >{{ selectedJob.job_loc }}</span
                 >
                 <span class="text-truncate me-3"
-                  ><i class="far fa-clock text-primary me-2"></i>Full Time</span
+                  ><i class="far fa-clock text-primary me-2"></i
+                  >{{ selectedJob.job_type }}</span
                 >
                 <span class="text-truncate me-0"
-                  ><i class="far fa-money-bill-alt text-primary me-2"></i>$123 -
-                  $456</span
+                  ><i class="far fa-money-bill-alt text-primary me-2"></i
+                  >{{ selectedJob.salary }}</span
                 >
               </div>
             </div>
@@ -1129,16 +1213,7 @@
             <div class="mb-5">
               <h4 class="mb-3">Job description</h4>
               <p>
-                Dolor justo tempor duo ipsum accusam rebum gubergren erat. Elitr
-                stet dolor vero clita labore gubergren. Kasd sed ipsum elitr
-                clita rebum ut sea diam tempor. Sadipscing nonumy vero labore
-                invidunt dolor sed, eirmod dolore amet aliquyam consetetur
-                lorem, amet elitr clita et sed consetetur dolore accusam. Vero
-                kasd nonumy justo rebum stet. Ipsum amet sed lorem sea magna.
-                Rebum vero dolores dolores elitr vero dolores magna, stet sea
-                sadipscing stet et. Est voluptua et sanctus at sanctus erat vero
-                sed sed, amet duo no diam clita rebum duo, accusam tempor
-                takimata clita stet nonumy rebum est invidunt stet, dolor.
+                {{ selectedJob.job_description }}
               </p>
               <h4 class="mb-3">Responsibility</h4>
               <p>
@@ -1170,11 +1245,9 @@
               </ul>
               <h4 class="mb-3">Qualifications</h4>
               <p>
-                Magna et elitr diam sed lorem. Diam diam stet erat no est est.
-                Accusam sed lorem stet voluptua sit sit at stet consetetur,
-                takimata at diam kasd gubergren elitr dolor
+                {{ selectedJob.job_req }}
               </p>
-              <ul class="list-unstyled">
+              <!-- <ul class="list-unstyled">
                 <li>
                   <i class="fa fa-angle-right text-primary me-2"></i>Dolor justo
                   tempor duo ipsum accusam
@@ -1195,7 +1268,7 @@
                   <i class="fa fa-angle-right text-primary me-2"></i>Diam diam
                   stet erat no est est
                 </li>
-              </ul>
+              </ul> -->
             </div>
 
             <div class="">
@@ -1234,7 +1307,11 @@
                     ></textarea>
                   </div>
                   <div class="col-12">
-                    <button class="btn btn-primary w-100" type="submit">
+                    <button
+                      class="btn btn-primary w-100"
+                      type="submit"
+                      (click)="applyJob(selectedJob.job_id)"
+                    >
                       Apply Now
                     </button>
                   </div>
@@ -1250,28 +1327,28 @@
             >
               <h4 class="mb-4">Job Summery</h4>
               <p>
-                <i class="fa fa-angle-right text-primary me-2"></i>Published On:
-                01 Jan, 2045
+                <i class="fa fa-angle-right text-primary me-2"></i
+                >{{ selectedJob.application_deadline | date }}
               </p>
               <p>
-                <i class="fa fa-angle-right text-primary me-2"></i>Vacancy: 123
-                Position
+                <i class="fa fa-angle-right text-primary me-2"></i>Vacancy:
+                {{ selectedJob.job_title }}
               </p>
               <p>
                 <i class="fa fa-angle-right text-primary me-2"></i>Job Nature:
-                Full Time
+                {{ selectedJob.job_type }}
               </p>
               <p>
-                <i class="fa fa-angle-right text-primary me-2"></i>Salary: $123
-                - $456
+                <i class="fa fa-angle-right text-primary me-2"></i>Salary:
+                {{ selectedJob.salary }}
               </p>
               <p>
-                <i class="fa fa-angle-right text-primary me-2"></i>Location: New
-                York, USA
+                <i class="fa fa-angle-right text-primary me-2"></i>Location:
+                {{ selectedJob.job_loc }}
               </p>
               <p class="m-0">
-                <i class="fa fa-angle-right text-primary me-2"></i>Date Line: 01
-                Jan, 2045
+                <i class="fa fa-angle-right text-primary me-2"></i>Date Line:
+                {{ selectedJob.application_deadline | date }}
               </p>
             </div>
             <div
@@ -1280,11 +1357,7 @@
             >
               <h4 class="mb-4">Company Detail</h4>
               <p class="m-0">
-                Ipsum dolor ipsum accusam stet et et diam dolores, sed rebum
-                sadipscing elitr vero dolores. Lorem dolore elitr justo et no
-                gubergren sadipscing, ipsum et takimata aliquyam et rebum est
-                ipsum lorem diam. Et lorem magna eirmod est et et sanctus et,
-                kasd clita labore.
+                {{ selectedJob.description }}
               </p>
             </div>
           </div>
@@ -1351,28 +1424,28 @@
           </ul>
           <div class="tab-content">
             <div id="tab-1" class="tab-pane fade show p-0 active">
-              <div class="job-item p-4 mb-4">
+              <div class="job-item p-4 mb-4" *ngFor="let job of JobData">
                 <div class="row g-4">
                   <div class="col-sm-12 col-md-8 d-flex align-items-center">
                     <img
                       class="flex-shrink-0 img-fluid border rounded"
-                      src="../../../assets/img/com-logo-1.jpg"
+                      src="{{ job.logo_url }}"
                       alt=""
                       style="width: 80px; height: 80px"
                     />
                     <div class="text-start ps-4">
-                      <h5 class="mb-3">Software Engineer</h5>
+                      <h5 class="mb-3">{{ job.job_title }}</h5>
                       <span class="text-truncate me-3"
                         ><i class="fa fa-map-marker-alt text-primary me-2"></i
-                        >New York, USA</span
+                        >{{ job.job_loc }}</span
                       >
                       <span class="text-truncate me-3"
-                        ><i class="far fa-clock text-primary me-2"></i>Full
-                        Time</span
+                        ><i class="far fa-clock text-primary me-2"></i
+                        >{{ job.job_type }}</span
                       >
                       <span class="text-truncate me-0"
                         ><i class="far fa-money-bill-alt text-primary me-2"></i
-                        >$123 - $456</span
+                        >{{ job.salary }}</span
                       >
                     </div>
                   </div>
@@ -1383,11 +1456,13 @@
                       <a class="btn btn-light btn-square me-3" href=""
                         ><i class="far fa-heart text-primary"></i
                       ></a>
-                      <a class="btn btn-primary" href="">Apply Now</a>
+                      <a class="btn btn-primary" (click)="applyJob(job.job_id)"
+                        >Apply Now</a
+                      >
                     </div>
                     <small class="text-truncate"
-                      ><i class="far fa-calendar-alt text-primary me-2"></i>Date
-                      Line: 01 Jan, 2045</small
+                      ><i class="far fa-calendar-alt text-primary me-2"></i
+                      >{{ job.application_deadline | date }}</small
                     >
                   </div>
                 </div>
@@ -2193,7 +2268,10 @@
           <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
             <div class="row g-0 about-bg rounded overflow-hidden">
               <div class="col-6 text-start">
-                <img class="img-fluid w-100" src="../../../assets/img/about-1.jpg" />
+                <img
+                  class="img-fluid w-100"
+                  src="../../../assets/img/about-1.jpg"
+                />
               </div>
               <div class="col-6 text-start">
                 <img
@@ -2210,7 +2288,10 @@
                 />
               </div>
               <div class="col-6 text-end">
-                <img class="img-fluid w-100" src="../../../assets/img/about-4.jpg" />
+                <img
+                  class="img-fluid w-100"
+                  src="../../../assets/img/about-4.jpg"
+                />
               </div>
             </div>
           </div>

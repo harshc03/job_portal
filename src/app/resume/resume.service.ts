@@ -7,6 +7,7 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 export class ResumeService {
 
   constructor() { }
+  templateid!: number;
   resumeForm = new FormGroup({
     firstname: new FormControl(),
     lastname: new FormControl(),

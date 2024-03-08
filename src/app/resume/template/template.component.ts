@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ResumeService } from '../resume.service';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-template',
@@ -9,15 +10,14 @@ import { FormGroup } from '@angular/forms';
 })
 export class TemplateComponent {
   @Output() selected: EventEmitter<boolean> = new EventEmitter<boolean>();
+  constructor(private router : Router, private resumeService: ResumeService){}
   templates: string[] = [
-    'https://images.pexels.com/photos/1680140/pexels-photo-1680140.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    'https://images.pexels.com/photos/1680140/pexels-photo-1680140.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    'https://images.pexels.com/photos/1680140/pexels-photo-1680140.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+    '../../../../assets/img/template2.png',
+    '../../../../assets/img/template1.png',
   ];
   id!: number;
   selectedTemplate(id:any):void{
-    this.id = id;
-    this.selected.emit(id)
-    console.log(id)
+    this.resumeService.templateid = id;
+    this.router.navigate(['/profile']);
   }
 }

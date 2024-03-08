@@ -12,6 +12,10 @@ import { SelectedTemplateComponent } from './resume/selected-template/selected-t
 import { LoginComponent } from './candidate-authentication/login/login.component';
 import { RegisterComponent } from './candidate-authentication/register/register.component';
 import { TemplateComponent } from './resume/template/template.component';
+import { AdminDashboardComponent } from './admin-site/admin-dashboard/admin-dashboard.component';
+import { AdminLoginComponent } from './admin-site/admin-login/admin-login.component';
+import { RecruiterLoginComponent } from './recruiter-auth/recruiter-login/recruiter-login.component';
+import { RecruiterRegisterComponent } from './recruiter-auth/recruiter-register/recruiter-register.component';
 
 const routes: Routes = [
   {
@@ -39,16 +43,16 @@ const routes: Routes = [
     component: DashboardComponent
   },
   {
-    path:'job-posting',
+    path: 'job-posting',
     component: JobPostingComponent,
     outlet: 'recruiter'
   },
   {
-    path:'candidate-portal',
+    path: 'candidate-portal',
     component: HeroComponent
   },
   {
-    path: 'selected-template',
+    path: 'selected-template/:id',
     component: SelectedTemplateComponent
   },
   {
@@ -60,8 +64,24 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path:'templates',
-    component:TemplateComponent 
+    path: 'templates',
+    component: TemplateComponent
+  },
+  {
+    path: 'admin-login',
+    component: AdminLoginComponent
+  },
+  {
+    path: 'admin-dashboard',
+    component: AdminDashboardComponent
+  },
+  {
+    path:'recruiter-register',
+    component:RecruiterRegisterComponent
+  },
+  {
+    path:'recruiter-login',
+    component:RecruiterLoginComponent
   }
 ];
 

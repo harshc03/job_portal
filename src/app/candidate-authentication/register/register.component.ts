@@ -32,17 +32,17 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     // Load stored user data from localStorage
-    const storedUserData = localStorage.getItem('userData');
-    if (storedUserData) {
-      this.userData.patchValue(JSON.parse(storedUserData));
-    }
+    // const storedUserData = localStorage.getItem('userData');
+    // if (storedUserData) {
+    //   this.userData.patchValue(JSON.parse(storedUserData));
+    // }
   }
 
   createResume() {
     // Store form data in localStorage
     console.log(this.userData.value); 
-    localStorage.setItem('userData', JSON.stringify(this.userData.value));
-    this.router.navigate(['/profile']);
+    // localStorage.setItem('userData', JSON.stringify(this.userData.value));
+    this.router.navigate(['/templates']);
   }
 
   registerUser() {
