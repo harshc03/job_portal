@@ -32,4 +32,7 @@ export class RecruiterLoginComponent {
       }
     })
   }
+  register(){
+    this.router.navigate(['/recruiter-register']);
+  }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Form, FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { Form, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ResumeService } from '../resume.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-education',
@@ -9,7 +10,7 @@ import { ResumeService } from '../resume.service';
 })
 export class EducationComponent {
   educationForm: FormGroup;
-  constructor(private fb: FormBuilder, private resumeService: ResumeService) {
+  constructor(private fb: FormBuilder, private resumeService: ResumeService,private router : Router) {
     this.educationForm = this.resumeService.resumeForm;
   }
 
@@ -19,11 +20,11 @@ export class EducationComponent {
 
   addEducation() {
     this.educationArray.push(this.fb.group({
-      institution: [''],
-      degree: [''],
-      year: [''],
-      percentage: [''],
-      board: ['']
+      institution: ['',Validators.required],
+      degree: ['',Validators.required],
+      year: ['',Validators.required],
+      percentage: ['',Validators.required],
+      board: ['',Validators.required],
     }));
   }
 
@@ -32,7 +33,11 @@ export class EducationComponent {
   }
 
   onSubmit() {
-    this.resumeService.printEducationForm(this.educationForm.value);
+    this.educationForm.markAllAsTouched();
+    if(this.educationForm.valid){
+      this.resumeService.printEducationForm(this.educationForm.value);
+      this.router.navigate(['/skills']);
+    }
   }
   
 }

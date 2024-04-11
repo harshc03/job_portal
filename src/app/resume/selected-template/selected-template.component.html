@@ -1,4 +1,4 @@
-<div id="first">
+<div id="first" *ngIf="id === 2">
   <button
     (click)="openPDF()"
     class="d-flex col-3 btn btn-warning submit align-items-center justify-content-center"
@@ -24,7 +24,7 @@
   />
 
   <!-- PAGE STUFF -->
-  <div class="rela-block page" id="htmlData" *ngIf="id === 2">
+  <div class="rela-block page" id="htmlData" >
     <div class="rela-block top-bar">
       <div class="caps name">
         <div class="abs-center">

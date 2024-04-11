@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -9,45 +9,44 @@ export class ResumeService {
   constructor() { }
   templateid!: number;
   resumeForm = new FormGroup({
-    firstname: new FormControl(),
-    lastname: new FormControl(),
-    position: new FormControl(),
-    language: new FormControl(),
-    email: new FormControl(),
-    country: new FormControl(),
-    phone: new FormControl(),
-    photo: new FormControl(),
-    aboutMe: new FormControl(),
-    location: new FormControl(),
-    linkedin: new FormControl(),
-    github: new FormControl(),
+    firstname: new FormControl('', Validators.required),
+    lastname: new FormControl('', Validators.required),
+    position: new FormControl('', Validators.required),
+    language: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    country: new FormControl('', Validators.required),
+    phone: new FormControl('', Validators.required),
+    aboutMe: new FormControl('', Validators.required),
+    location: new FormControl('', Validators.required),
+    linkedin: new FormControl('', Validators.required),
+    github: new FormControl('', Validators.required),
     education: new FormArray([
       new FormGroup({
-        institution: new FormControl(),
-        degree: new FormControl(),
-        year: new FormControl(),
-        percentage: new FormControl(),
-        board: new FormControl(),
-        location: new FormControl(),
+        institution: new FormControl('', Validators.required),
+        degree: new FormControl('', Validators.required),
+        year: new FormControl('', Validators.required),
+        percentage: new FormControl('', Validators.required),
+        board: new FormControl('', Validators.required),
+        location: new FormControl('', Validators.required),
       }),
     ]),
     skills: new FormArray([
       new FormGroup({
-        skillName: new FormControl(),
+        skillName: new FormControl('', Validators.required),
       }),
     ]),
     workExperience: new FormArray([
       new FormGroup({
-        w_type: new FormControl(),
-        company: new FormControl(),
-        position: new FormControl(),
-        description: new FormControl(),
-        tenure: new FormControl()
+        w_type: new FormControl('', Validators.required),
+        company: new FormControl('', Validators.required),
+        position: new FormControl('', Validators.required),
+        description: new FormControl('', Validators.required),
+        tenure: new FormControl('', Validators.required)
       }),
     ]),
     coCorricular: new FormArray([
       new FormGroup({
-        description: new FormControl(''),
+        description: new FormControl('', Validators.minLength(7)), // Min length set to 7 characters
       }),
     ]),
   });

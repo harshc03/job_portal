@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ResumeService } from '../resume.service';
 import { Router } from '@angular/router';
-
+import { minLengthIfNotEmpty } from 'src/app/shared/validators/min-length'
+;
 @Component({
   selector: 'app-co-corricular',
   templateUrl: './co-corricular.component.html',
@@ -30,7 +31,11 @@ export class CoCorricularComponent {
   }
 
   onSubmit() {
-    this.resumeService.printCoCurricularActivityForm(this.coCurricularActivityForm.value);
-    this.router.navigate(['/selected-template', this.resumeService.templateid])
+    this.coCurricularActivityForm.markAllAsTouched();
+
+    if (this.coCurricularActivityForm.valid) {
+      this.resumeService.printCoCurricularActivityForm(this.coCurricularActivityForm.value);
+      this.router.navigate(['/selected-template', this.resumeService.templateid]);
+    }
   }
 }

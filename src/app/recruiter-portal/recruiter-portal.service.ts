@@ -1,22 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/internal/Observable';
+import { Observable } from 'rxjs';
 import { API_URL } from '../shared/constants/app.constants';
-
 
 @Injectable({
   providedIn: 'root'
 })
-export class RecruiterServiceService {
+export class RecruiterPortalService {
 
   constructor(private http : HttpClient) { }
 
-  register(recruiter:any): Observable<any>{
-    return this.http.post(API_URL.BACKEND_URL+"recruiter/register",recruiter)
+  postJob(job:any): Observable<any>{
+    return this.http.post(API_URL.BACKEND_URL+"recruiter/post-job",job)
   }
 
-  loginRecruiter(recruiter:any):Observable<any>{
-    return this.http.post(API_URL.BACKEND_URL+"recruiter/login",recruiter)
+  getSector():Observable<any>{
+    return this.http.get(API_URL.BACKEND_URL+"recruiter/sector")
   }
   uploadFile(file : any) : Observable<any>{
     const formData = new FormData();

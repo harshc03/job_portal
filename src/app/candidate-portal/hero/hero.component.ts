@@ -4,6 +4,8 @@ import { Sector } from 'src/app/shared/interfaces/sector.interface';
 import { CandidateServiceService } from '../candidate-service.service';
 import { JobLocation } from 'src/app/shared/interfaces/job-location.interface';
 import { Job } from 'src/app/shared/interfaces/job.interface';
+import { ResumeService } from 'src/app/resume/resume.service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-hero',
@@ -18,8 +20,10 @@ export class HeroComponent implements OnInit {
   selectedCategory: string = 'Category';
   selectedLocation: string = 'Location';
   filteredJobs!: Job[];
+  jobListData!: Job[];
   selectedJob!: Job;
-  constructor(private cookieService: CookieService, private candidateService: CandidateServiceService) {
+  resumeForm! : FormGroup;
+  constructor(private cookieService: CookieService, private candidateService: CandidateServiceService, private resumeService: ResumeService) {
 
   }
   ngOnInit(): void {
@@ -31,6 +35,47 @@ export class HeroComponent implements OnInit {
   activeItem: String = 'home'
   setActiveItem(active: String) {
     this.activeItem = active;
+  }
+  // Assume this function fetches jobs and is called on the job listings page/component
+  fetchAndDisplayJobs(selectedCategory : string | null) {
+    this.jobListData = this.JobData;
+
+    // If there's a selected category, filter jobs by it
+    if (selectedCategory) {
+      this.jobListData = this.JobData.filter(job => job.sector === selectedCategory);
+    }
+
+    // Render `filteredJobs` in your div
+    this.setActiveItem('jobList')
+  }
+  onCategoryContainerClick(event: MouseEvent) {
+    let target = event.target as HTMLElement;
+
+    // If a category element was clicked, handle the event
+    if (target && target.hasAttribute('data-category')) {
+      const category = target.getAttribute('data-category');
+      console.log(`Category clicked: ${category}`);
+      this.fetchAndDisplayJobs(category);
+    }
+  }
+  generateSimplifiedResumeJson() {
+    const formValue = this.resumeForm.value;
+
+    let simplifiedResume = {
+      name: `${formValue.firstname} ${formValue.lastname}`,
+      age: null,
+      skills: formValue.skills.map((skill: any) => skill.skillName),
+      experience: formValue.workExperience.map((exp: any) => {
+        return {
+          title: exp.position,
+          company: exp.company,
+          years: exp.tenure
+        };
+      })
+    };
+
+    console.log(simplifiedResume);
+    return simplifiedResume;
   }
 
   getJobLocations() {
@@ -109,5 +154,12 @@ export class HeroComponent implements OnInit {
   onSearch() {
     this.filteredJobs = this.filterJobs();
     console.log(this.filteredJobs);
+  }
+
+  scrollUp(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }
 }

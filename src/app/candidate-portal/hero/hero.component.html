@@ -49,7 +49,7 @@
             >Jobs</a
           >
           <div class="dropdown-menu rounded-0 m-0">
-            <a class="dropdown-item" (click)="setActiveItem('jobList')"
+            <a class="dropdown-item" (click)="fetchAndDisplayJobs(null)"
               >Job List</a
             >
             <a class="dropdown-item" (click)="setActiveItem('jobDetail')"
@@ -281,58 +281,58 @@
         <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
           Explore By Category
         </h1>
-        <div class="row g-4">
+        <div class="row g-4" (click)="onCategoryContainerClick($event)">
           <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-            <a class="cat-item rounded p-4" href="">
+            <a class="cat-item rounded p-4" data-category="Marketing">
               <i class="fa fa-3x fa-mail-bulk text-primary mb-4"></i>
               <h6 class="mb-3">Marketing</h6>
               <p class="mb-0">123 Vacancy</p>
             </a>
           </div>
           <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-            <a class="cat-item rounded p-4" href="">
+            <a class="cat-item rounded p-4" data-category="Customer Service">
               <i class="fa fa-3x fa-headset text-primary mb-4"></i>
               <h6 class="mb-3">Customer Service</h6>
               <p class="mb-0">123 Vacancy</p>
             </a>
           </div>
           <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-            <a class="cat-item rounded p-4" href="">
+            <a class="cat-item rounded p-4" data-category="Human Resource">
               <i class="fa fa-3x fa-user-tie text-primary mb-4"></i>
               <h6 class="mb-3">Human Resource</h6>
               <p class="mb-0">123 Vacancy</p>
             </a>
           </div>
           <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-            <a class="cat-item rounded p-4" href="">
+            <a class="cat-item rounded p-4" data-category="Project Management">
               <i class="fa fa-3x fa-tasks text-primary mb-4"></i>
               <h6 class="mb-3">Project Management</h6>
               <p class="mb-0">123 Vacancy</p>
             </a>
           </div>
-          <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-            <a class="cat-item rounded p-4" href="">
+          <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s" >
+            <a class="cat-item rounded p-4" data-category="Business Development">
               <i class="fa fa-3x fa-chart-line text-primary mb-4"></i>
               <h6 class="mb-3">Business Development</h6>
               <p class="mb-0">123 Vacancy</p>
             </a>
           </div>
           <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-            <a class="cat-item rounded p-4" href="">
+            <a class="cat-item rounded p-4" data-category="Sales & Communication">
               <i class="fa fa-3x fa-hands-helping text-primary mb-4"></i>
               <h6 class="mb-3">Sales & Communication</h6>
               <p class="mb-0">123 Vacancy</p>
             </a>
           </div>
           <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-            <a class="cat-item rounded p-4" href="">
+            <a class="cat-item rounded p-4" data-category="Teaching & Education">
               <i class="fa fa-3x fa-book-reader text-primary mb-4"></i>
               <h6 class="mb-3">Teaching & Education</h6>
               <p class="mb-0">123 Vacancy</p>
             </a>
           </div>
           <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-            <a class="cat-item rounded p-4" href="">
+            <a class="cat-item rounded p-4" data-category="Design & Creative">
               <i class="fa fa-3x fa-drafting-compass text-primary mb-4"></i>
               <h6 class="mb-3">Design & Creative</h6>
               <p class="mb-0">123 Vacancy</p>
@@ -1325,7 +1325,7 @@
               class="bg-light rounded p-5 mb-4 wow slideInUp"
               data-wow-delay="0.1s"
             >
-              <h4 class="mb-4">Job Summery</h4>
+              <h4 class="mb-4">Job Summary</h4>
               <p>
                 <i class="fa fa-angle-right text-primary me-2"></i
                 >{{ selectedJob.application_deadline | date }}
@@ -1424,7 +1424,7 @@
           </ul>
           <div class="tab-content">
             <div id="tab-1" class="tab-pane fade show p-0 active">
-              <div class="job-item p-4 mb-4" *ngFor="let job of JobData">
+              <div class="job-item p-4 mb-4" *ngFor="let job of jobListData">
                 <div class="row g-4">
                   <div class="col-sm-12 col-md-8 d-flex align-items-center">
                     <img
@@ -1456,7 +1456,7 @@
                       <a class="btn btn-light btn-square me-3" href=""
                         ><i class="far fa-heart text-primary"></i
                       ></a>
-                      <a class="btn btn-primary" (click)="applyJob(job.job_id)"
+                      <a class="btn btn-primary" (click)="selectJob(job)"
                         >Apply Now</a
                       >
                     </div>
@@ -2555,7 +2555,7 @@
   <!-- Footer End -->
 
   <!-- Back to Top -->
-  <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"
+  <a (click)="scrollUp()" class="btn btn-lg btn-primary btn-lg-square back-to-top"
     ><i class="bi bi-arrow-up"></i
   ></a>
 </div>

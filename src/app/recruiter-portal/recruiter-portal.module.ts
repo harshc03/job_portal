@@ -6,6 +6,9 @@ import { JobPostingComponent } from './job-posting/job-posting.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { JobListingComponent } from './job-listing/job-listing.component';
 import { ApplicantsComponent } from './applicants/applicants.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -19,7 +22,11 @@ import { ApplicantsComponent } from './applicants/applicants.component';
   imports: [
     CommonModule,
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    HttpClientModule,
   ],
   exports:[
     DashboardComponent,

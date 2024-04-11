@@ -11,31 +11,36 @@
           <div class="m-2 flex-fill">
             <label for="school">School/University</label>
             <input type="text" formControlName="institution" class="form-control" placeholder="Enter School/University">
+            <div *ngIf="educationGroup.get('institution')?.invalid && educationGroup.get('institution')?.touched && educationGroup.get('institution')?.errors?.['required']" class="text-danger mt-1">School/University is required.</div>
           </div>
           <div class="m-2 flex-fill">
             <label for="degree">Degree</label>
             <input type="text" formControlName="degree" class="form-control" placeholder="Enter Degree">
+            <div *ngIf="educationGroup.get('degree')?.invalid && educationGroup.get('degree')?.touched && educationGroup.get('degree')?.errors?.['required']" class="text-danger mt-1">Degree is required.</div>
           </div>
         </div>
         <div class="d-flex justify-content-between">
           <div class="m-2 flex-fill">
             <label for="year">Year</label>
             <input type="text" formControlName="year" class="form-control" placeholder="Enter Year">
+            <div *ngIf="educationGroup.get('year')?.invalid && educationGroup.get('year')?.touched && educationGroup.get('year')?.errors?.['required']" class="text-danger mt-1">Year is required.</div>
           </div>
           <div class="m-2 flex-fill">
             <label for="percentage">Percentage / CGPA</label>
-            <input type="text" formControlName="percentage" class="form-control"
-              placeholder="Enter Percentage / CGPA">
+            <input type="text" formControlName="percentage" class="form-control" placeholder="Enter Percentage / CGPA">
+            <div *ngIf="educationGroup.get('percentage')?.invalid && educationGroup.get('percentage')?.touched && educationGroup.get('percentage')?.errors?.['required']" class="text-danger mt-1">Percentage / CGPA is required.</div>
           </div>
         </div>
         <div class="d-flex justify-content-between">
           <div class="m-2 flex-fill">
             <label for="board">Board</label>
             <input type="text" formControlName="board" class="form-control" placeholder="Enter Board">
+            <div *ngIf="educationGroup.get('board')?.invalid && educationGroup.get('board')?.touched && educationGroup.get('board')?.errors?.['required']" class="text-danger mt-1">Board is required.</div>
           </div>
           <div class="m-2 flex-fill">
             <label for="location">Location</label>
             <input type="text" formControlName="location" class="form-control" placeholder="Enter location">
+            <div *ngIf="educationGroup.get('location')?.invalid && educationGroup.get('location')?.touched && educationGroup.get('location')?.errors?.['required']" class="text-danger mt-1">Location is required.</div>
           </div>
         </div>
       </div>
@@ -45,10 +50,9 @@
       <a class="btn btn-primary" [routerLink]="['/profile']">
         <i class="fas fa-arrow-left p-2"></i> Previous
       </a>
-      <a class="btn btn-primary" (click)="onSubmit()" [routerLink]="['/skills']">
+      <a class="btn btn-primary" (click)="onSubmit()">
         Next <i class="fas fa-arrow-right p-2"></i>
       </a>
     </div>
-
   </form>
 </div>

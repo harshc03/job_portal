@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CompanyDetails } from 'src/app/shared/interfaces/admin-company.interface';
 import { AdminsService } from '../admins.service';
+import { HttpClient } from '@angular/common/http';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -14,10 +16,11 @@ export class AdminDashboardComponent implements OnInit {
   rejected!: CompanyDetails[];
   isDisabled:boolean=true;
 
-  constructor(private adminsService: AdminsService) { }
+  constructor(private adminsService: AdminsService,private http: HttpClient,private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.getCompanyDetails();
+    // this.fetchPdf();
   }
 
   getCompanyDetails(): void {
@@ -51,4 +54,19 @@ export class AdminDashboardComponent implements OnInit {
       event.preventDefault();
     }
   }
+  // pdfSrc!: string;
+  // safePdfSrc!: SafeResourceUrl;
+  // fetchPdf(): void {
+  //   const url = 'http://localhost:8080/api/getUploadfiles/angular-demo (15).pdf';
+  //   this.http.get(url, { responseType: 'arraybuffer' }).subscribe(
+  //     (response: ArrayBuffer) => {
+  //       const blob = new Blob([response], { type: 'application/pdf' });
+  //       this.pdfSrc = window.URL.createObjectURL(blob);
+  //       this.safePdfSrc = this.sanitizer.bypassSecurityTrustResourceUrl(this.pdfSrc);
+  //     },
+  //     error => {
+  //       console.error('Error fetching PDF:', error);
+  //     }
+  //   );
+  // }
 }

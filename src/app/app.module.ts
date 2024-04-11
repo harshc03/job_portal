@@ -12,6 +12,7 @@ import { CandidateAuthenticationModule } from './candidate-authentication/candid
 import { AdminSiteModule } from './admin-site/admin-site.module';
 import { RecruiterAuthModule } from './recruiter-auth/recruiter-auth.module';
 
+
 @NgModule({
   declarations: [
     AppComponent

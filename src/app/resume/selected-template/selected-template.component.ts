@@ -22,7 +22,7 @@ export class SelectedTemplateComponent {
     this.id = this.resumeService.templateid;
   }
   isResumeDataAvailable(): boolean {
-    return !!this.resumeData;
+    return !this.resumeData;
   }
 
   ngOnInit(): void {
