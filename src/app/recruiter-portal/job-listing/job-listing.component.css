@@ -16,6 +16,10 @@ body{
 :root {
   scroll-behavior: smooth;
 }
+p {
+  font-family: Lato;
+  font-size: 15px;
+}
 
 body {
   font-family: "Open Sans", sans-serif;

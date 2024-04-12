@@ -9,30 +9,34 @@ import { ApplicantsComponent } from './applicants/applicants.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { RecruiterAuthModule } from "../recruiter-auth/recruiter-auth.module";
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
 @NgModule({
-  declarations: [
-    DashboardComponent,
-    JobPostingComponent,
-    JobListingComponent,
-    ApplicantsComponent
-  ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    HttpClientModule,
-  ],
-  exports:[
-    DashboardComponent,
-    JobPostingComponent,
-    JobListingComponent,
-    ApplicantsComponent
-  ]
+    declarations: [
+        DashboardComponent,
+        JobPostingComponent,
+        JobListingComponent,
+        ApplicantsComponent
+    ],
+    exports: [
+        DashboardComponent,
+        JobPostingComponent,
+        JobListingComponent,
+        ApplicantsComponent
+    ],
+    imports: [
+        CommonModule,
+        HttpClientModule,
+        SharedModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule,
+        RecruiterAuthModule,
+        NgxPaginationModule,
+    ]
 })
 export class RecruiterPortalModule { }

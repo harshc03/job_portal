@@ -1,10 +1,11 @@
-<p>dashboard works!</p>
+<!-- <p>dashboard works!</p> -->
 <app-recruiter-nav [isExpanded]="sidebarExpanded" (toggleSidebar)="sidebarExpanded = !sidebarExpanded"></app-recruiter-nav>
 <!-- End Header -->
 <app-recruiter-sidebar (activeItemChanged)="setActiveSection($event)"></app-recruiter-sidebar>
 <app-job-posting *ngIf=" activeSection === 'jobPosting'"></app-job-posting>
 <app-job-listing *ngIf=" activeSection === 'jobListing'"></app-job-listing>
 <app-applicants *ngIf=" activeSection === 'candidateProfile'"></app-applicants>
+<app-recruiter-login *ngIf=" activeSection === 'logout'"></app-recruiter-login>
 <!-- End #main -->
 <footer id="footer" class="footer">
   <div class="copyright">
