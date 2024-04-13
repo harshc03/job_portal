@@ -2,11 +2,13 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API_URL } from '../shared/constants/app.constants';
+import { Job } from '../shared/interfaces/job.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecruiterPortalService {
+  selectedJob!:Job
   constructor(private http : HttpClient) { }
 
   postJob(job:any): Observable<any>{

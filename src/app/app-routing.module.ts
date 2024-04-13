@@ -16,6 +16,7 @@ import { AdminDashboardComponent } from './admin-site/admin-dashboard/admin-dash
 import { AdminLoginComponent } from './admin-site/admin-login/admin-login.component';
 import { RecruiterLoginComponent } from './recruiter-auth/recruiter-login/recruiter-login.component';
 import { RecruiterRegisterComponent } from './recruiter-auth/recruiter-register/recruiter-register.component';
+import { JobDetailsComponent } from './recruiter-portal/job-details/job-details.component';
 
 const routes: Routes = [
   {
@@ -82,6 +83,10 @@ const routes: Routes = [
   {
     path:'recruiter-login',
     component:RecruiterLoginComponent
+  },
+  {
+    path:'app-job-details',
+    component:JobDetailsComponent
   }
 ];
 
