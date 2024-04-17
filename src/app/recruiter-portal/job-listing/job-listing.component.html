@@ -1,11 +1,11 @@
 <main id="main" class="main">
-
   <div class="pagetitle text-center m-3">
     <h1>Job Openings</h1>
-  </div><!-- End Page Title -->
+  </div>
+  <!-- End Page Title -->
 
   <div class="container">
-      <!-- <div class="row">
+    <!-- <div class="row">
            <div class="col-lg-10 mx-auto mb-4">
               <div class="section-title text-center ">
                   <h3 class="top-c-sep">Grow your career with us</h3>
@@ -13,19 +13,24 @@
           </div>
       </div> -->
 
-      <div class="row">
-          <div class="col-lg-10 mx-auto">
-              <div class="career-search mb-60">
-
-                  <form action="#" class="career-form mb-60">
-                      <div class="row">
-                          <div class="col-md-6 col-lg-4 my-3 ">
-                              <div class="input-group position-relative">
-                                  <input type="text" class="form-control p-4" placeholder="Enter Your Keywords" id="keywords">
-                              </div>
-                          </div>
-                          <div class="col-md-6 col-lg-4 my-3">
-                              <!-- <div class="select-container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <div class="career-search mb-60">
+          <form action="#" class="career-form mb-60">
+            <div class="row">
+              <div class="col-md-6 col-lg-4 my-3">
+                <div class="input-group position-relative">
+                  <input
+                    type="text"
+                    class="form-control p-4"
+                    placeholder="Enter Your Keywords"
+                    name="keywordText"
+                    [(ngModel)]="keywordText"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4 my-3">
+                <!-- <div class="select-container">
                                   <select class="custom-select">
                                       <option selected="">Location</option>
                                       <option value="1">Jaipur</option>
@@ -33,46 +38,73 @@
                                       <option value="3">Bangalore</option>
                                   </select>
                               </div> -->
-                              <input type="text" class="form-control p-4" placeholder="Enter Location" id="keywords">
-                          </div>
-                          <div class="col-md-6 col-lg-4 my-3">
-                              <button type="button" class="btn btn-lg btn-block btn-light btn-custom px-5" style="margin-left: 70px;margin-top: 10px;" id="contact-submit">
-                                  Search
-                              </button>
-                          </div>
-                      </div>
-                  </form>
+                <input
+                  type="text"
+                  class="form-control p-4"
+                  placeholder="Enter Location"
+                  name="locationText"
+                  [(ngModel)]="locationText"
+                />
+              </div>
+              <div class="col-md-6 col-lg-4 my-3">
+                <button
+                  type="button"
+                  class="btn btn-lg btn-block btn-light btn-custom px-5"
+                  style="margin-left: 70px; margin-top: 10px"
+                  id="contact-submit"
+                  (click)="onSearch()"
+                >
+                  Search
+                </button>
+              </div>
+            </div>
+          </form>
 
-                  <div class="filter-result">
-                      <!-- <p class="mb-30 ff-montserrat">Total Job Openings : 89</p> -->
-                      <p class="mb-30 ff-montserrat"></p>
+          <div class="filter-result">
+            <!-- <p class="mb-30 ff-montserrat">Total Job Openings : 89</p> -->
+            <p class="mb-30 ff-montserrat"></p>
 
-                      <div class="job-box d-md-flex align-items-center justify-content-between mb-30" *ngFor="let job of jobDetails| paginate: { itemsPerPage: 10, currentPage: p }">
-                          <div class="job-left my-4 d-md-flex align-items-center flex-wrap">
-                              <div class="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex">
-                                  {{job.job_title[0]}}
-                              </div>
-                              <div class="job-content">
-                                  <h5 class="text-center text-md-left">{{job.job_title}}</h5>
-                                  <ul class="d-md-flex flex-wrap text-capitalize ff-open-sans">
-                                      <li class="mr-md-4">
-                                          <i class="zmdi zmdi-pin mr-2"></i> {{job.job_loc}}
-                                      </li>
-                                      <li class="mr-md-4">
-                                          <i class="zmdi zmdi-money mr-2"></i> {{job.salary}}
-                                      </li>
-                                      <li class="mr-md-4">
-                                          <i class="zmdi zmdi-time mr-2"></i> {{job.job_type}}
-                                      </li>
-                                  </ul>
-                              </div>
-                          </div>
-                          <div class="job-right my-4 flex-shrink-0">
-                              <a class="btn d-block w-100 d-sm-inline-block btn-light" (click)="selected(job)">View More</a>
-                          </div>
-                      </div>
-                      <pagination-controls (pageChange)="p = $event" class="float-right"></pagination-controls>
-                      <!-- <div class="job-box d-md-flex align-items-center justify-content-between mb-30">
+            <div
+              class="job-box d-md-flex align-items-center justify-content-between mb-30"
+              *ngFor="
+                let job of filteredJobDetails
+                  | paginate : { itemsPerPage: 10, currentPage: p }
+              "
+            >
+              <div class="job-left my-4 d-md-flex align-items-center flex-wrap">
+                <div
+                  class="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex"
+                >
+                  {{ job.job_title[0] }}
+                </div>
+                <div class="job-content">
+                  <h5 class="text-center text-md-left">{{ job.job_title }}</h5>
+                  <ul class="d-md-flex flex-wrap text-capitalize ff-open-sans">
+                    <li class="mr-md-4">
+                      <i class="zmdi zmdi-pin mr-2"></i> {{ job.job_loc }}
+                    </li>
+                    <li class="mr-md-4">
+                      <i class="zmdi zmdi-money mr-2"></i> {{ job.salary }}
+                    </li>
+                    <li class="mr-md-4">
+                      <i class="zmdi zmdi-time mr-2"></i> {{ job.job_type }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="job-right my-4 flex-shrink-0">
+                <a
+                  class="btn d-block w-100 d-sm-inline-block btn-light"
+                  (click)="selected(job)"
+                  >View More</a
+                >
+              </div>
+            </div>
+            <pagination-controls
+              (pageChange)="p = $event"
+              class="float-right"
+            ></pagination-controls>
+            <!-- <div class="job-box d-md-flex align-items-center justify-content-between mb-30">
                           <div class="job-left my-4 d-md-flex align-items-center flex-wrap">
                               <div class="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex">
                                   UX
@@ -146,12 +178,11 @@
                               <a href="#" class="btn d-block w-100 d-sm-inline-block btn-light">View More</a>
                           </div>
                       </div> -->
+          </div>
+        </div>
 
-                  </div>
-              </div>
-
-              <!-- START Pagination -->
-              <!-- <nav aria-label="Page navigation">
+        <!-- START Pagination -->
+        <!-- <nav aria-label="Page navigation">
                   <ul class="pagination pagination-reset justify-content-center">
                       <li class="page-item ">
                           <a class="page-link" href="#" tabindex="-1" aria-disabled="false">
@@ -168,11 +199,9 @@
                       </li>
                   </ul>
               </nav> -->
-              
-              <!-- END Pagination -->
-          </div>
+
+        <!-- END Pagination -->
       </div>
-
+    </div>
   </div>
-
 </main>

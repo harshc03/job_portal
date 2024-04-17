@@ -21,22 +21,23 @@ import { NgxPaginationModule } from 'ngx-pagination';
         JobListingComponent,
         ApplicantsComponent
     ],
+    imports: [
+        CommonModule,
+        HttpClientModule,
+        SharedModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        RouterModule,
+        RecruiterAuthModule,
+        NgxPaginationModule,
+        FormsModule,
+    ],
     exports: [
         DashboardComponent,
         JobPostingComponent,
         JobListingComponent,
         ApplicantsComponent
     ],
-    imports: [
-        CommonModule,
-        HttpClientModule,
-        SharedModule,
-        AppRoutingModule,
-        FormsModule,
-        ReactiveFormsModule,
-        RouterModule,
-        RecruiterAuthModule,
-        NgxPaginationModule,
-    ]
+    
 })
 export class RecruiterPortalModule { }

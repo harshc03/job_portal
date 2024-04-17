@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { RecruiterPortalService } from '../recruiter-portal.service';
 import { Router } from '@angular/router';
 import { Sector } from 'src/app/shared/interfaces/sector.interface';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-job-posting',
@@ -16,6 +17,7 @@ export class JobPostingComponent implements OnInit{
 
   constructor(
     private recruiterPortalService: RecruiterPortalService,
+    private cookieService: CookieService,
     private router: Router
   ) {
     // Initialize the form group
@@ -26,7 +28,7 @@ export class JobPostingComponent implements OnInit{
       jobRequirement: new FormControl(''),
       jobType: new FormControl(''),
       startDate: new FormControl('2024-05-15'),
-      companyId: new FormControl(3),
+      companyId: new FormControl(+this.cookieService.get("companyId")),
       sectorId: new FormControl(''),
       jdURL: new FormControl(''),
       location:new FormControl(''),

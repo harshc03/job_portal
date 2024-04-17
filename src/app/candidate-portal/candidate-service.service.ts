@@ -24,4 +24,7 @@ export class CandidateServiceService {
   applyJob(candidateId: number, jobId: number): Observable<any> {
     return this.http.post(API_URL.BACKEND_URL + "applyJob", { candidateId, jobId }, { withCredentials: true })
   }
+  getRecommendations(candidateId: number): Observable<any> {
+    return this.http.post("http://localhost:8000/api/recommend", { candidateId })
+  }
 }

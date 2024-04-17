@@ -20,7 +20,7 @@ export class ApplicantsComponent implements OnInit{
   }
 
   getCandidates(){
-    this.recruiterPortalService.getCandidates("1").subscribe((data)=>{
+    this.recruiterPortalService.getCandidates("2").subscribe((data)=>{
       this.candidateDetails=data
     })
   }

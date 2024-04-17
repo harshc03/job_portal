@@ -6,6 +6,7 @@ import { JobLocation } from 'src/app/shared/interfaces/job-location.interface';
 import { Job } from 'src/app/shared/interfaces/job.interface';
 import { ResumeService } from 'src/app/resume/resume.service';
 import { FormGroup } from '@angular/forms';
+import { API_URL } from 'src/app/shared/constants/app.constants';
 
 @Component({
   selector: 'app-hero',
@@ -13,8 +14,11 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./hero.component.css']
 })
 export class HeroComponent implements OnInit {
+  API_URL = API_URL;
+  p: number = 1;
   category!: Sector[];
   location!: JobLocation[];
+  // BASE_URL !: string = API_URL;
   JobData!: Job[];
   searchText: string = '';
   selectedCategory: string = 'Category';
@@ -23,6 +27,7 @@ export class HeroComponent implements OnInit {
   jobListData!: Job[];
   selectedJob!: Job;
   resumeForm! : FormGroup;
+  jobRecommendationList! : any[] 
   constructor(private cookieService: CookieService, private candidateService: CandidateServiceService, private resumeService: ResumeService) {
 
   }
@@ -30,6 +35,7 @@ export class HeroComponent implements OnInit {
     this.getJobs();
     this.getCategories();
     this.getJobLocations();
+    this.getrecommendJobs();
   }
   images = ['../../../assets/img/carousel-1.jpg', '../../../assets/img/carousel-1.jpg', '../../../assets/img/carousel-1.jpg']
   activeItem: String = 'home'
@@ -90,7 +96,19 @@ export class HeroComponent implements OnInit {
     }
     );
   }
-
+  getrecommendJobs() {
+    const candidateId = this.cookieService.get('id');
+    this.candidateService.getRecommendations(parseInt(candidateId)).subscribe({
+      next: (data: any) => {
+        this.jobRecommendationList = data["recommendations"];
+        console.log(this.jobRecommendationList)
+      },
+      error: (error: any) => {
+        console.log(error);
+      },
+    }
+    );
+  }
   getCategories() {
     this.candidateService.getCategory().subscribe({
       next: (data: Sector[]) => {
@@ -148,6 +166,7 @@ export class HeroComponent implements OnInit {
 
   selectJob(job: Job): void {
     this.selectedJob = job;
+    console.log(this.selectedJob)
     this.activeItem = 'jobDetail';
   }
 
@@ -162,4 +181,47 @@ export class HeroComponent implements OnInit {
       behavior: 'smooth'
     });
   }
+  enableEdit(index: number) {
+    this.editedIndex = index;
+  }
+
+  cancelEdit() {
+    this.editedIndex = null;
+  }
+
+  saveEdit() {
+    // Save edited data to backend
+    // apiService.saveUserDetails(this.userDetails);
+    this.editedIndex = null;
+  }
+  userDetails: any = {
+    personalInformation: {
+      name: 'John Doe',
+      email: 'john.doe@example.com'
+    },
+    skills: ['JavaScript', 'Angular', 'HTML', 'CSS'],
+    workExperience: [
+      {
+        company: 'ABC Inc.',
+        role: 'Software Engineer'
+      },
+      {
+        company: 'XYZ Corp.',
+        role: 'Web Developer'
+      }
+    ],
+    education: [
+      {
+        institution: 'University of ABC',
+        degree: 'Bachelor of Science in Computer Science'
+      },
+      {
+        institution: 'DEF College',
+        degree: 'Master of Science in Software Engineering'
+      }
+    ]
+  };
+  
+  activeItem2: string | null = null;
+  editedIndex: number | null = null;
 }

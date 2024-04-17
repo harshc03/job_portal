@@ -9,26 +9,48 @@ import { Router } from '@angular/router';
   templateUrl: './job-listing.component.html',
   styleUrls: ['./job-listing.component.css']
 })
-export class JobListingComponent implements OnInit{
+export class JobListingComponent implements OnInit {
 
-  jobDetails!:Job[]
-  p: string|number=1;
+  jobDetails!: Job[];
+  filteredJobDetails!: Job[];
+  p: string | number = 1;
+  keywordText: string = '' ;
+  locationText: string = '';
 
-  constructor(private recruiterPortalService: RecruiterPortalService,private cookieservice:CookieService,private router:Router){ }
+  constructor(private recruiterPortalService: RecruiterPortalService, private cookieservice: CookieService,private router:Router) { }
 
   ngOnInit(): void {
-    this.getJobs()
+    this.getJobs();
   }
-  getJobs(){
-    
-    this.recruiterPortalService.getJobs("1").subscribe((data : Job[])=>{
-      this.jobDetails=data
-    })
+
+  getJobs() {
+    this.recruiterPortalService.getJobs(this.cookieservice.get("companyId")).subscribe((data: Job[]) => {
+      this.jobDetails = data;
+      this.filteredJobDetails = data;  // Initialize filteredJobDetails with all jobs initially
+    });
+  }
+
+  onSearch() {
+    console.log("Hii "+this.keywordText, this.locationText)
+    this.filteredJobDetails = this.filterJobs();
+    console.log(this.filteredJobDetails);
+  }
+
+  filterJobs(): Job[] {
+    console.log("Filtering with:", this.keywordText, this.locationText);
+    if (!this.keywordText && !this.locationText) {
+      console.log("No keyword and location");
+      return this.jobDetails;
+    }
+  
+    return this.jobDetails.filter(job => {
+      const matchesKeyword = this.keywordText ? job.job_title.toLowerCase().includes(this.keywordText.toLowerCase()) || job.job_description.toLowerCase().includes(this.keywordText.toLowerCase()) : true;
+      const matchesLocation = this.locationText ? job.job_loc.toLowerCase().includes(this.locationText.toLowerCase()) : true;
+      return matchesKeyword && matchesLocation;
+    });
   }
   selected(job:Job){
     this.recruiterPortalService.selectedJob=job
     this.router.navigate(['/app-job-details'])
   }
-
-
 }
